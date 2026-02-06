@@ -29,3 +29,11 @@ Blog posts are markdown files with frontmatter (title, date, description, tags).
 - Use Astro components (.astro files), avoid framework components
 - Tailwind only for styling, no custom CSS unless necessary
 - Keep component count minimal
+- Use pnpm as the package manager
+- Comment all code extensively with short, concise comments
+
+## Workflow
+- Before implementing any task, explain what you're going to do and which files you'll change. Only start changing files after getting approval.
+
+## Testing
+- E2E tests use Playwright, located in tests/
