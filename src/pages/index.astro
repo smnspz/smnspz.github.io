@@ -1,6 +1,48 @@
 ---
+import { getCollection } from "astro:content";
 import Base from "../layouts/Base.astro";
+
+// Fetch all blog posts and sort by date, newest first
+const posts = (await getCollection("blog")).sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime()
+);
 ---
 
 <Base title="Blog">
+  <!-- Page heading -->
+  <h1 class="mb-0.5">Posts</h1>
+  <!-- Post list, one article per blog entry -->
+  <section aria-label="Blog posts">
+    {posts.map((post) => (
+      <!-- Light grey background on hover, compact padding, smooth transition -->
+      <article class="flex gap-3 items-center p-2 -mx-2 rounded hover:bg-gray-50 dark:hover:bg-gray-900 transition-colors">
+        <!-- Thumbnail on the left, if present -->
+        {post.data.thumbnail && (
+          <img
+            src={post.data.thumbnail}
+            alt={`Thumbnail for ${post.data.title}`}
+            class="w-16 h-16 object-cover rounded shrink-0"
+          />
+        )}
+        <!-- Post info on the right -->
+        <div>
+          <!-- Post title linking to the full post -->
+          <h2>
+            <a href={`/blog/${post.id}`}>{post.data.title}</a>
+          </h2>
+          <!-- Post description -->
+          <p class="text-sm italic">{post.data.description}</p>
+          <!-- Post date with machine-readable datetime -->
+          <time class="text-xs" datetime={post.data.date.toISOString()}>
+            {post.data.date.toLocaleDateString("en-US", {
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+            })}
+          </time>
+
+        </div>
+      </article>
+    ))}
+  </section>
 </Base>
