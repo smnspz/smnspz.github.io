@@ -2,9 +2,9 @@
 import { getCollection } from "astro:content";
 import Base from "../layouts/Base.astro";
 
-// Fetch all blog posts and sort by date, newest first
+// Fetch all blog posts and sort by date, oldest first
 const posts = (await getCollection("blog")).sort(
-  (a, b) => b.data.date.getTime() - a.data.date.getTime()
+  (a, b) => a.data.date.getTime() - b.data.date.getTime()
 );
 ---
 
