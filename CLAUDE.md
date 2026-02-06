@@ -30,10 +30,12 @@ Blog posts are markdown files with frontmatter (title, date, description, tags).
 - Tailwind only for styling, no custom CSS unless necessary
 - Keep component count minimal
 - Use pnpm as the package manager
-- Comment all code extensively with short, concise comments
+- Comment all code with short, concise comments (a word or two for HTML comments, brief for code comments)
 
 ## Workflow
 - Before implementing any task, explain what you're going to do and which files you'll change. Only start changing files after getting approval.
+- Update TODO.md each time a task is completed.
+- After completing a task, automatically review and present the next task for approval.
 
 ## Testing
 - E2E tests use Playwright, located in tests/
