@@ -8,41 +8,41 @@ const posts = (await getCollection("blog")).sort(
 );
 ---
 
-<Base title="Blog">
+<Base title="Blog" description="A personal blog about technology, music, and how the world works.">
   <!-- Page heading -->
   <h1 class="mb-0.5">Posts</h1>
   <!-- Post list, one article per blog entry -->
-  <section aria-label="Blog posts">
+  <!-- Vertical spacing between articles, subtle border between them -->
+  <section aria-label="Blog posts" class="space-y-1">
     {posts.map((post) => (
-      <!-- Light grey background on hover, compact padding, smooth transition -->
-      <article class="flex gap-3 items-center p-2 -mx-2 rounded hover:bg-gray-50 dark:hover:bg-gray-900 transition-colors">
-        <!-- Thumbnail on the left, if present -->
-        {post.data.thumbnail && (
-          <img
-            src={post.data.thumbnail}
-            alt={`Thumbnail for ${post.data.title}`}
-            class="w-16 h-16 object-cover rounded shrink-0"
-          />
-        )}
-        <!-- Post info on the right -->
-        <div>
-          <!-- Post title linking to the full post -->
-          <h2>
-            <a href={`/blog/${post.id}`}>{post.data.title}</a>
-          </h2>
-          <!-- Post description -->
-          <p class="text-sm italic">{post.data.description}</p>
-          <!-- Post date with machine-readable datetime -->
-          <time class="text-xs" datetime={post.data.date.toISOString()}>
-            {post.data.date.toLocaleDateString("en-US", {
-              year: "numeric",
-              month: "long",
-              day: "numeric",
-            })}
-          </time>
-
-        </div>
-      </article>
+      <!-- Whole card is a clickable link to the post -->
+      <a href={`/blog/${post.id}`} class="no-underline text-inherit">
+        <article class="flex gap-3 items-center p-2 -mx-2 rounded hover:bg-gray-50 dark:hover:bg-gray-900 transition-colors border-b border-gray-100 dark:border-gray-800 last:border-0">
+          <!-- Thumbnail on the left, if present -->
+          {post.data.thumbnail && (
+            <img
+              src={post.data.thumbnail}
+              alt={`Thumbnail for ${post.data.title}`}
+              class="w-16 h-16 object-cover rounded shrink-0"
+            />
+          )}
+          <!-- Post info on the right -->
+          <div>
+            <!-- Post title -->
+            <h2 class="hover:underline">{post.data.title}</h2>
+            <!-- Post description -->
+            <p class="text-sm italic">{post.data.description}</p>
+            <!-- Muted date, accessible in both color modes -->
+            <time class="text-xs text-gray-500 dark:text-gray-400" datetime={post.data.date.toISOString()}>
+              {post.data.date.toLocaleDateString("en-US", {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              })}
+            </time>
+          </div>
+        </article>
+      </a>
     ))}
   </section>
 </Base>
