@@ -1,0 +1,45 @@
+---
+import { getCollection, render } from "astro:content";
+import Base from "../../layouts/Base.astro";
+
+// Generate a static page for each blog post
+export async function getStaticPaths() {
+  const posts = await getCollection("blog");
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+// Format the post date for display (e.g. "February 6, 2026")
+const formattedDate = post.data.date.toLocaleDateString("en-US", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
+---
+
+<Base title={post.data.title}>
+  <!-- Post title -->
+  <h1 class="font-semibold">{post.data.title}</h1>
+  <!-- Post date with machine-readable datetime attribute -->
+  <time class="text-xs" datetime={post.data.date.toISOString()}>
+    {formattedDate}
+  </time>
+  <!-- Tags as pill bubbles with tag icon, only rendered if tags exist -->
+  {post.data.tags && (
+    <ul class="flex flex-wrap gap-2 list-none p-0 my-2">
+      {post.data.tags.map((tag) => (
+        <li class="flex items-center gap-1 text-xs px-2 py-1 rounded-full bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300">
+          <?xml version="1.0" encoding="UTF-8"?><svg class="w-3 h-3" width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#000000" stroke-width="1.5"><path d="M3 17.4V6.6C3 6.26863 3.26863 6 3.6 6H16.6789C16.8795 6 17.0668 6.10026 17.1781 6.26718L20.7781 11.6672C20.9125 11.8687 20.9125 12.1313 20.7781 12.3328L17.1781 17.7328C17.0668 17.8997 16.8795 18 16.6789 18H3.6C3.26863 18 3 17.7314 3 17.4Z" fill="#000000" stroke="#000000" stroke-width="1.5"></path></svg>
+          {tag}
+        </li>
+      ))}
+    </ul>
+  )}
+  <!-- Rendered markdown content -->
+  <Content />
+</Base>
