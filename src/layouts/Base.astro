@@ -3,9 +3,15 @@ import "../styles/global.css";
 
 interface Props {
   title: string;
+  description?: string;
 }
 
-const { title } = Astro.props;
+const { title, description } = Astro.props;
+
+// Detect active page for nav highlighting
+const path = Astro.url.pathname;
+const isHome = path === "/" || path.startsWith("/blog");
+const isAbout = path === "/about";
 ---
 
 <!doctype html>
@@ -14,6 +20,11 @@ const { title } = Astro.props;
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
+    {description && <meta name="description" content={description} />}
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    {description && <meta property="og:description" content={description} />}
+    <meta property="og:type" content="website" />
   </head>
   <!-- Body -->
   <body class="min-h-screen flex flex-col max-w-2xl mx-auto px-6 font-sans leading-relaxed bg-white text-gray-900 dark:bg-gray-950 dark:text-gray-100">
@@ -22,10 +33,10 @@ const { title } = Astro.props;
       <!-- Site name -->
       <span class="text-sm font-semibold">srosani</span>
       <nav aria-label="Main navigation" class="flex gap-6 text-sm">
-        <!-- Home link -->
-        <a href="/" class="text-gray-600 dark:text-gray-400 hover:underline">Home</a>
-        <!-- About link -->
-        <a href="/about" class="text-gray-600 dark:text-gray-400 hover:underline">About</a>
+        <!-- Home -->
+        <a href="/" class:list={["hover:underline", isHome ? "font-semibold text-gray-900 dark:text-gray-100" : "text-gray-600 dark:text-gray-400"]}>Home</a>
+        <!-- About -->
+        <a href="/about" class:list={["hover:underline", isAbout ? "font-semibold text-gray-900 dark:text-gray-100" : "text-gray-600 dark:text-gray-400"]}>About</a>
       </nav>
     </header>
     <main id="main-content" class="grow">
