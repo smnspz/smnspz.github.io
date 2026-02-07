@@ -1,9 +1,10 @@
 import { test, expect } from "@playwright/test";
+import { Routes } from "../src/routes";
 import fs from "fs";
 import path from "path";
 
 // Read all .md files from the blog content directory to get slugs
-const blogDir = path.resolve("src/content/blog");
+const blogDir = path.resolve(`src/content${Routes.Blog}`);
 const slugs = fs
   .readdirSync(blogDir)
   .filter((file) => file.endsWith(".md"))
@@ -11,8 +12,8 @@ const slugs = fs
 
 // Generate a test for each blog post slug
 for (const slug of slugs) {
-  test(`/blog/${slug} renders correctly`, async ({ page }) => {
-    const response = await page.goto(`/blog/${slug}`);
+  test(`${Routes.Blog}/${slug} renders correctly`, async ({ page }) => {
+    const response = await page.goto(`${Routes.Blog}/${slug}`);
 
     // Page should return 200
     expect(response?.status()).toBe(200);

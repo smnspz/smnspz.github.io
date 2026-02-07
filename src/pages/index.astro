@@ -1,5 +1,6 @@
 ---
 import { getCollection } from "astro:content";
+import { Routes } from "../routes";
 import Base from "../layouts/Base.astro";
 
 // Fetch all blog posts and sort by date, oldest first
@@ -16,7 +17,7 @@ const posts = (await getCollection("blog")).sort(
   <section aria-label="Blog posts" class="space-y-1">
     {posts.map((post) => (
       <!-- Whole card is a clickable link to the post -->
-      <a href={`/blog/${post.id}`} class="no-underline text-inherit">
+      <a href={`${Routes.Blog}/${post.id}`} class="no-underline text-inherit">
         <article class="flex gap-3 items-center p-2 -mx-2 rounded hover:bg-gray-50 dark:hover:bg-gray-900 transition-colors border-b border-gray-100 dark:border-gray-800 last:border-0">
           <!-- Thumbnail on the left, if present -->
           {post.data.thumbnail && (

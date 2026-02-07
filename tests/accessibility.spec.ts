@@ -1,6 +1,7 @@
 import { test, expect } from "@playwright/test";
+import { Routes } from "../src/routes";
 
-const pages = ["/", "/about", "/blog/hello-world"];
+const pages = [Routes.Root, Routes.About, `${Routes.Blog}/hello-world`];
 
 // Each page should have exactly one h1
 for (const url of pages) {
