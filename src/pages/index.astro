@@ -18,7 +18,7 @@ const posts = (await getCollection("blog")).sort(
     {posts.map((post) => (
       <!-- Whole card is a clickable link to the post -->
       <a href={`${Routes.Blog}/${post.id}`} class="no-underline text-inherit">
-        <article class="flex gap-3 items-center p-2 -mx-2 rounded hover:bg-gray-50 dark:hover:bg-gray-900 transition-colors border-b border-gray-100 dark:border-gray-800 last:border-0">
+        <article class="flex gap-3 items-center p-2 -mx-2 rounded hover:bg-white/30 dark:hover:bg-white/4 transition-all duration-200 ease-in-out border-b border-gray-100 dark:border-gray-800 last:border-0">
           <!-- Thumbnail on the left, if present -->
           {post.data.thumbnail && (
             <img
@@ -34,7 +34,7 @@ const posts = (await getCollection("blog")).sort(
             <!-- Post description -->
             <p class="text-sm italic">{post.data.description}</p>
             <!-- Muted date, accessible in both color modes -->
-            <time class="text-xs text-gray-500 dark:text-gray-400" datetime={post.data.date.toISOString()}>
+            <time class="text-xs text-[#7a7673] dark:text-gray-400" datetime={post.data.date.toISOString()}>
               {post.data.date.toLocaleDateString("en-US", {
                 year: "numeric",
                 month: "long",
