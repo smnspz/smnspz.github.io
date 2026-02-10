@@ -1,7 +1,6 @@
 ---
 import "../styles/global.css";
 import { SITE_TITLE } from "../constants";
-import { navLinks } from "../routes";
 
 
 interface Props {
@@ -10,8 +9,6 @@ interface Props {
 }
 
 const { title, description } = Astro.props;
-
-const path = Astro.url.pathname;
 
 ---
 
@@ -26,18 +23,17 @@ const path = Astro.url.pathname;
     <meta property="og:title" content={title} />
     {description && <meta property="og:description" content={description} />}
     <meta property="og:type" content="website" />
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap" rel="stylesheet" />
   </head>
   <!-- Body -->
-  <body class="min-h-screen flex flex-col max-w-2xl mx-auto px-6 font-sans leading-relaxed bg-[#f5f0e8] text-[#3d3530] dark:bg-[#12110f] dark:text-[#fcf9f5]">
+  <body class="min-h-screen flex flex-col max-w-2xl mx-auto px-6 font-sans text-base leading-relaxed bg-[#f5f0e8] text-[#3d3530] dark:bg-[#12110f] dark:text-[#fcf9f5]">
     <!-- Site header -->
-    <header class="flex items-center justify-between py-4">
+    <header class="pt-20 pb-4">
       <!-- Site name -->
       <span class="text-sm font-semibold">{SITE_TITLE}</span>
-      <nav aria-label="Main navigation" class="flex gap-6 text-sm">
-        {navLinks.map(link => (
-          <a href={link.href} class:list={["hover:underline", link.match(path) ? "font-semibold text-[#3d3530] dark:text-[#fcf9f5]" : "text-[#8a7e72] dark:text-[#9a9088]"]}>{link.label}</a>
-        ))}
-      </nav>
     </header>
     <main id="main-content" class="grow">
       <slot />

@@ -10,13 +10,17 @@ const posts = (await getCollection("blog")).sort(
 ---
 
 <Base title="Blog" description="A personal blog about technology, music, and how the world works.">
+  <!-- Bio -->
+  <section class="mb-10 space-y-3 text-base leading-relaxed">
+    <p>I studied economics thinking it would explain how the world works. It mostly taught me how to sit through meetings. After a few jobs and a slow realization that I wanted to build things, not manage them, I turned to software engineering. That one stuck.</p>
+    <p>I've been playing drums since middle school, picked up bass and guitar along the way, and spent years bouncing between bands and solo recording projects. I write, record, and produce my own stuff — always chasing a sound I can't quite describe.</p>
+    <p>This is where I put thoughts about both worlds, and whatever falls in between.</p>
+  </section>
   <!-- Page heading -->
   <h1 class="mb-0.5">Posts</h1>
-  <!-- Post list, one article per blog entry -->
-  <!-- Vertical spacing between articles, subtle border between them -->
-  <section aria-label="Blog posts" class="space-y-1">
+  <!-- Posts list -->
+  <section aria-label="Blog posts" class="space-y-1 text-base">
     {posts.map((post) => (
-      <!-- Whole card is a clickable link to the post -->
       <a href={`${Routes.Blog}/${post.id}`} class="no-underline text-inherit">
         <article class="flex gap-3 items-center p-2 -mx-2 rounded hover:bg-white/30 dark:hover:bg-white/4 transition-all duration-200 ease-in-out border-b border-gray-100 dark:border-gray-800 last:border-0">
           <!-- Thumbnail on the left, if present -->
