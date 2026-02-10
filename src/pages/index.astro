@@ -10,14 +10,6 @@ const posts = (await getCollection("blog")).sort(
 ---
 
 <Base title="Blog" description="A personal blog about technology, music, and how the world works.">
-  <!-- Typographic header -->
-  <div slot="header" class="flex justify-center">
-    <div class="relative h-10 mb-4 w-60 select-none" aria-label="smnspz is a nerd">
-      <span class="absolute top-0 left-0 text-3xl font-semibold">smnspz</span>
-      <span class="absolute top-0 left-32 text-xs text-[#8a7e72] dark:text-[#9a9088] rotate-3 translate-y-1">is a</span>
-      <span class="absolute top-0 left-42 text-xl font-semibold -rotate-2 translate-y-0.5">nerd</span>
-    </div>
-  </div>
   <!-- Bio -->
   <section class="mb-10 space-y-3 text-base leading-relaxed">
     <p>I studied economics thinking it would explain how the world works. It mostly taught me how to sit through meetings. After a few jobs and a slow realization that I wanted to build things, not manage them, I turned to software engineering. That one stuck.</p>
