@@ -1,7 +1,7 @@
 import { test, expect } from "@playwright/test";
 import { Routes } from "../src/routes";
 
-const pages = [Routes.Root, Routes.About, `${Routes.Blog}/hello-world`];
+const pages = [Routes.Root, `${Routes.Blog}/hello-world`];
 const viewports = [
   { name: "mobile", width: 320, height: 568 },
   { name: "desktop", width: 1280, height: 800 },

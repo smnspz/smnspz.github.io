@@ -30,10 +30,11 @@ const { title, description } = Astro.props;
   </head>
   <!-- Body -->
   <body class="min-h-screen flex flex-col max-w-2xl mx-auto px-6 font-sans text-base leading-relaxed bg-[#f5f0e8] text-[#3d3530] dark:bg-[#12110f] dark:text-[#fcf9f5]">
-    <!-- Site header -->
     <header class="pt-20 pb-4">
-      <!-- Site name -->
-      <span class="text-sm font-semibold">{SITE_TITLE}</span>
+      <slot name="header">
+        <!-- Default: site name -->
+        <span class="text-sm font-semibold">{SITE_TITLE}</span>
+      </slot>
     </header>
     <main id="main-content" class="grow">
       <slot />
