@@ -19,7 +19,7 @@ for (const slug of slugs) {
     expect(response?.status()).toBe(200);
 
     // Post title should be present as an h1
-    const h1 = page.locator("h1");
+    const h1 = page.locator("main h1");
     await expect(h1).toBeVisible();
     await expect(h1).not.toBeEmpty();
 
