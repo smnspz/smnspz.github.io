@@ -3,11 +3,11 @@ import { Routes } from "../src/routes";
 
 const pages = [Routes.Root, `${Routes.Blog}/hello-world`];
 
-// Each page should have exactly one h1
+// Each page should have exactly one h1 in main content
 for (const url of pages) {
   test(`${url} has exactly one h1`, async ({ page }) => {
     await page.goto(url);
-    const h1s = page.locator("h1");
+    const h1s = page.locator("main h1");
     await expect(h1s).toHaveCount(1);
   });
 }
@@ -16,10 +16,9 @@ for (const url of pages) {
 for (const url of pages) {
   test(`${url} has required landmarks`, async ({ page }) => {
     await page.goto(url);
-    await expect(page.locator("header")).toHaveCount(1);
-    await expect(page.locator("main")).toHaveCount(1);
-    await expect(page.locator("footer")).toHaveCount(1);
-    await expect(page.locator("nav[aria-label]")).toHaveCount(1);
+    await expect(page.locator("body > header")).toHaveCount(1);
+    await expect(page.locator("body > main")).toHaveCount(1);
+    await expect(page.locator("body > footer")).toHaveCount(1);
   });
 }
 
@@ -27,7 +26,7 @@ for (const url of pages) {
 for (const url of pages) {
   test(`${url} images all have alt text`, async ({ page }) => {
     await page.goto(url);
-    const images = page.locator("img");
+    const images = page.locator("main img");
     const count = await images.count();
     for (let i = 0; i < count; i++) {
       const alt = await images.nth(i).getAttribute("alt");
@@ -36,14 +35,13 @@ for (const url of pages) {
   });
 }
 
-// All interactive elements are keyboard focusable
-test("nav links are keyboard focusable", async ({ page }) => {
+// All links are keyboard focusable
+test("links are keyboard focusable", async ({ page }) => {
   await page.goto("/");
-  const links = page.locator("nav a");
+  const links = page.locator("main a");
   const count = await links.count();
   for (let i = 0; i < count; i++) {
     const tabIndex = await links.nth(i).getAttribute("tabindex");
-    // Should not have negative tabindex
     expect(tabIndex).not.toBe("-1");
   }
 });

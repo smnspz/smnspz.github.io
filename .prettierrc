@@ -1,0 +1,4 @@
+{
+  "printWidth": 9999,
+  "plugins": ["prettier-plugin-astro"]
+}
