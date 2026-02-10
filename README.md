@@ -1,8 +1,25 @@
+[![Deploy](https://github.com/smnspz/srosani/actions/workflows/deploy.yml/badge.svg)](https://github.com/smnspz/srosani/actions/workflows/deploy.yml)
+
 # srosani blog
 
-This is my personal blog where I'll yap about whatever comes up to my mind. Music, technology and politics most likely.
-It's built with astro and hosted on Github Pages because I don't to spend a single penny for this.
+Personal blog where I yap about whatever comes to mind. Music, technology, and probably politics.
+Built with Astro, hosted on GitHub Pages because I refuse to spend a single penny on this.
+
+## Stack
+
+Astro, Tailwind CSS v4, Playwright, GitHub Pages.
+
+## Local dev
+
+```bash
+$ pnpm install
+$ pnpm dev
+```
+
+## Design choices
+
+No JS frameworks, no toggle — dark/light follows system preference. Inter Medium, warm cream/brown palette, generous whitespace. Minimal on purpose.
 
 ## Accessibility
-This thing is built with accessibility and ease of use in mind.
 
+Semantic HTML, proper landmarks, keyboard navigable, WCAG AA contrast. Tested with Playwright.
