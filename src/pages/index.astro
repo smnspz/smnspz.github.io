@@ -3,23 +3,23 @@ import Base from "../layouts/Base.astro";
 import { JOBS } from "../constants";
 ---
 
-<Base title="smnspz" description="A personal blog about technology, music, and how the world works.">
+<Base title="smnspz" description="Simone Rosani, software engineer and musician, personal website.">
   <div class="group/page">
     <!-- Bio -->
     <div class="animate-entrance mb-10">
-      <div class="bio-content space-y-3 text-base leading-relaxed transition-all duration-200 md:group-has-[.job-item:hover]/page:blur-[2px] md:group-has-[.job-item:hover]/page:opacity-70">
+      <div class="bio-content font-light space-y-3 text-base leading-relaxed transition-all duration-200 md:group-has-[.job-item:hover]/page:blur-[2px] md:group-has-[.job-item:hover]/page:opacity-70 selection:bg-[#d4c4f0] selection:text-[#2d1f4e]">
         <p>I started studying economics, hoping it would explain how the world actually works. It didn't, and I didn't finish. After a few jobs and a growing urge to build things rather than talk about them, I found my way into software engineering. That one stuck.</p>
         <p>I've been playing drums since middle school, picked up bass and guitar along the way, and spent years bouncing between bands and solo recording projects. I write, record, and produce my own stuff.</p>
         <p>This is where I put thoughts about both worlds, and whatever falls in between.</p>
       </div>
     </div>
     <!-- Experience -->
-    <h1 class="animate-entrance text-lg mb-4" style="animation-delay: 100ms">Where I worked <span class="text-[#8a7e72] dark:text-[#9a9088]">(if you care)</span></h1>
+    <h1 class="animate-entrance text-lg mb-4 font-bold" style="animation-delay: 100ms">Where I worked <span class="text-[#8a7e72] dark:text-[#9a9088]">(if you care)</span></h1>
     <section aria-label="Work experience" class="group group/jobs space-y-3">
       {
         JOBS.map((job, i) => (
-          <div class="animate-entrance" style={`animation-delay: ${(i + 2) * 100}ms`}>
-            <div class="job-item group/job cursor-pointer transition-all duration-200 md:group-hover:blur-[2px] md:group-hover:opacity-70 md:hover:blur-none! md:hover:opacity-100!" data-job>
+          <div class="animate-entrance selection:bg-[#d4c4f0] selection:text-[#2d1f4e]" style={`animation-delay: ${(i + 2) * 100}ms`}>
+            <div class="job-item group/job max-md:cursor-pointer transition-all duration-200 md:group-hover:blur-[2px] md:group-hover:opacity-70 md:hover:blur-none! md:hover:opacity-100!" data-job role="button" tabindex="0" aria-expanded="false">
               <span class="font-semibold underline underline-offset-4 decoration-[#8a7e72] dark:decoration-[#9a9088]">{job.company}</span>
               <div class="flex justify-between items-center mt-1">
                 <span class="text-[#8a7e72] dark:text-[#9a9088] text-sm">{job.role}</span>
@@ -30,9 +30,10 @@ import { JOBS } from "../constants";
               {job.products && (
                 <div class="job-detail flex flex-col gap-1.5 mt-2 max-h-0 opacity-0 overflow-hidden transition-all duration-200">
                   {job.products.map((product) => (
-                    <div class="flex items-center gap-3">
-                      <img src={product.icon} alt={product.name} class="w-6 h-6 rounded" />
-                      <span class="text-sm text-[#7a7673] dark:text-[#9a9088]">{product.name}</span>
+                    <div class="flex items-center gap-2 text-sm text-[#7a7673] dark:text-[#9a9088]">
+                      <img src={product.icon} alt={product.name} class="w-6 h-6 rounded shrink-0" />
+                      <span>{product.name}</span>
+                      <span class="ml-auto">{product.type}</span>
                     </div>
                   ))}
                 </div>
@@ -74,17 +75,35 @@ import { JOBS } from "../constants";
   <script>
     const isDesktop = window.matchMedia("(min-width: 768px)");
 
+    function toggleJob(el: Element) {
+      const wasOpen = el.classList.contains("open");
+      document.querySelectorAll("[data-job].open").forEach((o) => {
+        o.classList.remove("open");
+        o.setAttribute("aria-expanded", "false");
+      });
+      if (!wasOpen) {
+        el.classList.add("open");
+        el.setAttribute("aria-expanded", "true");
+      }
+    }
+
     document.querySelectorAll("[data-job]").forEach((el) => {
-      el.addEventListener("click", () => {
-        const wasOpen = el.classList.contains("open");
-        document.querySelectorAll("[data-job].open").forEach((o) => o.classList.remove("open"));
-        if (!wasOpen) el.classList.add("open");
+      el.addEventListener("click", () => toggleJob(el));
+
+      el.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          toggleJob(el);
+        }
       });
 
       el.addEventListener("mouseenter", () => {
         if (!isDesktop.matches) return;
         document.querySelectorAll("[data-job].open").forEach((o) => {
-          if (o !== el) o.classList.remove("open");
+          if (o !== el) {
+            o.classList.remove("open");
+            o.setAttribute("aria-expanded", "false");
+          }
         });
       });
     });

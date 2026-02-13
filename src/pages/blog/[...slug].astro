@@ -34,7 +34,7 @@ const formattedDate = post.data.date.toLocaleDateString("en-US", {
   <!-- Tags -->
   {
     post.data.tags && (
-      <ul class="flex flex-wrap gap-2 list-none p-0 my-2">
+      <ul class="flex flex-wrap gap-2 list-none p-0 my-2" role="list">
         {post.data.tags.map((tag: string) => (
           <li class="flex items-center gap-1 text-xs px-2 py-1 rounded-full bg-[#3d3530] text-[#f5f0e8] dark:bg-[#2a2420] dark:text-[#fcf9f5]">
             <svg class="w-3 h-3" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">

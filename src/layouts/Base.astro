@@ -24,10 +24,12 @@ const { title, description } = Astro.props;
     <!-- Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet" />
   </head>
   <!-- Body -->
   <body class="min-h-screen flex flex-col max-w-xl mx-auto px-6 font-sans text-base leading-relaxed bg-[#f5f0e8] text-[#3d3530] dark:bg-[#12110f] dark:text-[#fcf9f5]">
+    <!-- Skip link -->
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-[#3d3530] focus:text-[#f5f0e8] focus:rounded dark:focus:bg-[#fcf9f5] dark:focus:text-[#12110f]">Skip to content</a>
     <Header />
     <main id="main-content" class="grow">
       <slot />

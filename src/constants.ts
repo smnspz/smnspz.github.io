@@ -2,6 +2,7 @@ export const SITE_TITLE = "smnspz";
 
 type Product = {
   name: string;
+  type: string;
   icon: string;
 };
 
@@ -28,8 +29,8 @@ export const JOBS: Job[] = [
     period: "2022 - 25'",
     url: "https://takai.it/",
     products: [
-      { name: "Q8 Club - Android App", icon: "/q8club_appicon.png" },
-      { name: "La Repubblica - Android App", icon: "/larepubblica_appicon.png" },
+      { name: "Q8 Club", type: "Android App", icon: "/q8club_appicon.png" },
+      { name: "La Repubblica", type: "Android App", icon: "/larepubblica_appicon.png" },
     ],
   },
   {
