@@ -91,8 +91,9 @@ import { JOBS } from "../constants";
       el.addEventListener("click", () => toggleJob(el));
 
       el.addEventListener("keydown", (e) => {
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
+        const ke = e as KeyboardEvent;
+        if (ke.key === "Enter" || ke.key === " ") {
+          ke.preventDefault();
           toggleJob(el);
         }
       });
