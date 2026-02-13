@@ -1,12 +1,18 @@
 ---
 import { SITE_TITLE } from "../constants";
+import { Routes } from "../routes";
 ---
 
 <!-- Typographic header -->
-<header class="flex justify-center mt-15 mb-2">
-  <div class="relative h-10 mb-4 w-60 select-none" aria-label="smnspz is a nerd">
+<header class="flex flex-col items-center mt-15 mb-2">
+  <div class="animate-entrance relative h-10 mb-4 w-60 select-none" aria-label="smnspz is a nerd">
     <span class="absolute top-0 left-0 text-3xl font-semibold">{SITE_TITLE}</span>
     <span class="absolute top-0 left-32 text-xs text-[#8a7e72] dark:text-[#9a9088] rotate-3 translate-y-1">is a</span>
     <span class="absolute top-0 left-42 text-xl font-semibold -rotate-2 translate-y-0.5">nerd</span>
   </div>
+  <!-- Nav -->
+  <!-- Hidden for now -->
+  <nav class="hidden">
+    <a href={Routes.Blog} class="text-sm text-[#2563eb] dark:text-[#d4c4f0] hover:underline">blog</a>
+  </nav>
 </header>
