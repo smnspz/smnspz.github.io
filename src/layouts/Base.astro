@@ -2,14 +2,12 @@
 import "../styles/global.css";
 import Header from "../components/Header.astro";
 
-
 interface Props {
   title: string;
   description?: string;
 }
 
 const { title, description } = Astro.props;
-
 ---
 
 <!doctype html>
@@ -29,7 +27,7 @@ const { title, description } = Astro.props;
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap" rel="stylesheet" />
   </head>
   <!-- Body -->
-  <body class="min-h-screen flex flex-col max-w-2xl mx-auto px-6 font-sans text-base leading-relaxed bg-[#f5f0e8] text-[#3d3530] dark:bg-[#12110f] dark:text-[#fcf9f5]">
+  <body class="min-h-screen flex flex-col max-w-xl mx-auto px-6 font-sans text-base leading-relaxed bg-[#f5f0e8] text-[#3d3530] dark:bg-[#12110f] dark:text-[#fcf9f5]">
     <Header />
     <main id="main-content" class="grow">
       <slot />
