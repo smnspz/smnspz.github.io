@@ -1,0 +1,44 @@
+# Dependencies
+node_modules/
+pnpm-lock.yaml
+
+# Build output
+dist/
+.astro/
+
+# Git
+.git/
+.gitignore
+
+# Environment files
+.env
+.env.*
+
+# IDE/Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Documentation
+README.md
+TODO.md
+CLAUDE.md
+
+# Tests
+tests/
+*.test.js
+*.spec.js
+
+# Docker files (no need to copy into build context)
+Dockerfile
+docker-compose.yml
+.dockerignore
+
+# CI/CD
+.github/
