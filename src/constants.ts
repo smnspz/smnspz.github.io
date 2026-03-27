@@ -1,4 +1,4 @@
-export const SITE_TITLE = "smnspz";
+export const SITE_TITLE = "srosani";
 
 type Product = {
   name: string;
